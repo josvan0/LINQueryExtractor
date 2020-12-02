@@ -20,9 +20,9 @@ def extract_linq_query(linq):
             query = query.replace(tmp[0], tmp[1])
 
     # replace double qouted values
-    double_quotes = re.findall("''\.+''", query)
+    double_quotes = re.findall("''\S+''", query)
     for dq in double_quotes:
-        query = query.replace(dq, dq[1:-2])
+        query = query.replace(dq, dq[1:-1])
 
     return query
 
@@ -41,6 +41,7 @@ def get_linq_query(filename):
     output = filename.replace('.sql', '_original.sql')
     with open(output, 'w') as f:
         f.write(query)
+    print('LINQ extracted successfully!')
 
 
 if __name__ == '__main__':
