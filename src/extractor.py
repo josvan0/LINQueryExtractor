@@ -38,13 +38,27 @@ def get_linq_query(filename):
         print('LINQ query not found!')
         return
 
-    output = filename.replace('.sql', '_original.sql')
+    output = filename.replace('.sql', '_query.sql')
     with open(output, 'w') as f:
         f.write(query)
     print('LINQ extracted successfully!')
 
 
 if __name__ == '__main__':
-    print('*' * 30, 'LINQ parser', '*' * 30)
-    user_input = input('Enter LINQ file path: ')
-    get_linq_query(user_input)
+    print('\n', '*' * 30, 'LINQ query extractor', '*' * 30)
+    print('Type "e" or "exit" to quit program...')
+
+    while True:
+        print('\n', '-' * 75)
+        user_input = input('Enter LINQ file path: ')
+        if user_input == 'e' or user_input == 'exit':
+            print('Goodbye...')
+            exit(0)
+
+        try:
+            get_linq_query(user_input)
+        except OSError:
+            print('File not found!')
+        except Exception as e:
+            print('Error while process extraction.', 'See:', e)
+            print('Type "e" or "exit" to quit program...')

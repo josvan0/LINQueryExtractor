@@ -3,3 +3,10 @@
 
 # Python
 __pycache__/
+
+# pyinstaller generated dirs
+build/
+dist/
+
+# pyinstaller generated files
+*.spec
